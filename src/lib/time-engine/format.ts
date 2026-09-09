@@ -34,11 +34,43 @@ export function formatRemaining(msRemaining: number): string {
 export function formatExactRemaining(msRemaining: number): string {
   if (msRemaining <= 0) return "0:00";
   const totalSeconds = Math.floor(msRemaining / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
 export function formatPercent(progress: number): string {
   return `${Math.round(clamp(progress, 0, 1) * 100)}`;
+}
+
+/** Grobe, sprachliche Dauer ("40 Minuten", "16 Stunden", "3 Tagen"). */
+export function formatDurationWords(msRemaining: number): string {
+  if (msRemaining <= 0) return "gleich";
+  const minutes = msRemaining / 60000;
+  if (minutes < 5) return "gleich";
+  if (minutes < 60) {
+    const rounded = Math.round(minutes / 5) * 5;
+    return `${rounded} Minuten`;
+  }
+  const hours = msRemaining / 3600000;
+  if (hours < 24) {
+    const rounded = Math.round(hours);
+    return rounded === 1 ? "1 Stunde" : `${rounded} Stunden`;
+  }
+  const days = Math.round(hours / 24);
+  return days === 1 ? "1 Tag" : `${days} Tagen`;
+}
+
+export function formatStartCountdown(msRemaining: number): string {
+  if (msRemaining <= 0) return "Schule beginnt gleich";
+  return `Schule beginnt in ${formatDurationWords(msRemaining)}`;
+}
+
+export function formatResumeCountdown(msRemaining: number): string {
+  if (msRemaining <= 0) return "Schule beginnt gleich";
+  return `Schule wieder in ${formatDurationWords(msRemaining)}`;
 }

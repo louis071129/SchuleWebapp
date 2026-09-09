@@ -47,6 +47,10 @@ describe("formatExactRemaining", () => {
     expect(formatExactRemaining(5_000)).toBe("0:05");
     expect(formatExactRemaining(0)).toBe("0:00");
   });
+
+  it("formatiert Stunden:Minuten:Sekunden ab einer Stunde", () => {
+    expect(formatExactRemaining(3_665_000)).toBe("1:01:05");
+  });
 });
 
 describe("formatPercent", () => {
