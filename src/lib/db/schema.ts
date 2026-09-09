@@ -17,6 +17,8 @@ export interface Marker {
   weekday: Weekday;
   blockType: BlockType;
   lessonIndex?: number;
+  /** Nur bei blockType "break": nach welcher Stunde diese Pause liegt. */
+  afterLesson?: number;
   subject?: string;
 }
 

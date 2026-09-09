@@ -26,6 +26,7 @@ export function ZaehButton({ snapshot }: ZaehButtonProps) {
       weekday: snapshot.today!.weekday,
       blockType: currentBlock?.type ?? "lesson",
       lessonIndex: currentBlock?.type === "lesson" ? currentBlock.lessonIndex : undefined,
+      afterLesson: currentBlock?.type === "break" ? currentBlock.afterLesson : undefined,
       subject: currentBlock?.type === "lesson" ? currentBlock.subject : undefined,
     });
 

@@ -11,6 +11,7 @@ import type { ScheduleConfig } from "@/lib/time-engine/types";
 import { BigNumber } from "./BigNumber";
 import { BottomRow } from "./BottomRow";
 import { DayBar } from "./DayBar";
+import { TopNav } from "./TopNav";
 import { VacationScreen } from "./VacationScreen";
 import { ZaehButton } from "./ZaehButton";
 
@@ -51,6 +52,7 @@ export function JetztScreen({ config }: JetztScreenProps) {
   if (snapshot.phase === "holiday" && snapshot.vacation) {
     return (
       <main className="flex min-h-screen flex-col bg-bg">
+        <TopNav />
         <VacationScreen vacation={snapshot.vacation} />
       </main>
     );
@@ -61,6 +63,7 @@ export function JetztScreen({ config }: JetztScreenProps) {
 
   return (
     <main className="relative flex min-h-[100dvh] flex-col items-center overflow-hidden bg-bg px-6 pb-4 pt-8 select-none">
+      <TopNav />
       <div className="flex w-full max-w-md flex-1 flex-col items-center">
         <p className="min-h-[1.2em] text-center text-[11px] font-medium uppercase tracking-[0.2em] text-fg-dim">
           {view.topLabel}

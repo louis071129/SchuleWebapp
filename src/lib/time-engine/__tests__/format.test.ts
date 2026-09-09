@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { formatExactRemaining, formatPercent, formatRemaining, roundToStep } from "../format";
+import {
+  formatExactRemaining,
+  formatMinutesOfDay,
+  formatPercent,
+  formatRemaining,
+  roundToStep,
+} from "../format";
 
 describe("roundToStep", () => {
   it("rundet auf 5%-Schritte", () => {
@@ -50,6 +56,14 @@ describe("formatExactRemaining", () => {
 
   it("formatiert Stunden:Minuten:Sekunden ab einer Stunde", () => {
     expect(formatExactRemaining(3_665_000)).toBe("1:01:05");
+  });
+});
+
+describe("formatMinutesOfDay", () => {
+  it("formatiert Minuten seit Mitternacht als HH:MM", () => {
+    expect(formatMinutesOfDay(480)).toBe("08:00");
+    expect(formatMinutesOfDay(0)).toBe("00:00");
+    expect(formatMinutesOfDay(785)).toBe("13:05");
   });
 });
 

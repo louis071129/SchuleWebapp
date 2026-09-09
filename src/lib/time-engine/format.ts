@@ -43,6 +43,13 @@ export function formatExactRemaining(msRemaining: number): string {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
+/** Minuten seit Mitternacht als "HH:MM". */
+export function formatMinutesOfDay(minutes: number): string {
+  const h = Math.floor(minutes / 60) % 24;
+  const m = Math.round(minutes % 60);
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
 export function formatPercent(progress: number): string {
   return `${Math.round(clamp(progress, 0, 1) * 100)}`;
 }
