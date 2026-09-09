@@ -50,6 +50,12 @@ export function formatMinutesOfDay(minutes: number): string {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
+/** "HH:MM" zu Minuten seit Mitternacht. */
+export function parseTimeToMinutes(time: string): number {
+  const [h, m] = time.split(":").map(Number);
+  return (Number.isFinite(h) ? h : 0) * 60 + (Number.isFinite(m) ? m : 0);
+}
+
 export function formatPercent(progress: number): string {
   return `${Math.round(clamp(progress, 0, 1) * 100)}`;
 }

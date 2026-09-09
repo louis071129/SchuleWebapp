@@ -4,6 +4,7 @@ import {
   formatMinutesOfDay,
   formatPercent,
   formatRemaining,
+  parseTimeToMinutes,
   roundToStep,
 } from "../format";
 
@@ -64,6 +65,14 @@ describe("formatMinutesOfDay", () => {
     expect(formatMinutesOfDay(480)).toBe("08:00");
     expect(formatMinutesOfDay(0)).toBe("00:00");
     expect(formatMinutesOfDay(785)).toBe("13:05");
+  });
+});
+
+describe("parseTimeToMinutes", () => {
+  it("parst HH:MM zu Minuten seit Mitternacht", () => {
+    expect(parseTimeToMinutes("08:00")).toBe(480);
+    expect(parseTimeToMinutes("00:00")).toBe(0);
+    expect(parseTimeToMinutes("13:05")).toBe(785);
   });
 });
 

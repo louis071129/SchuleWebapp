@@ -45,7 +45,7 @@ export function JetztScreen({ config }: JetztScreenProps) {
 
   const longPress = useLongPress(handleTap, setRevealing);
 
-  if (!snapshot || !view) {
+  if (!snapshot) {
     return <div className="flex min-h-screen flex-col bg-bg" />;
   }
 
@@ -56,6 +56,10 @@ export function JetztScreen({ config }: JetztScreenProps) {
         <VacationScreen vacation={snapshot.vacation} />
       </main>
     );
+  }
+
+  if (!view) {
+    return <div className="flex min-h-screen flex-col bg-bg" />;
   }
 
   const exactMs = getExactRemainingMs(snapshot, level, snapshot.now);
